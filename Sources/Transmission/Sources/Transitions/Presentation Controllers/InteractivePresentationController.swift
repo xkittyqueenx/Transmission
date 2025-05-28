@@ -6,7 +6,6 @@
 
 import SwiftUI
 import UIKit
-import Engine
 
 /// An interactive based presentation controller base class
 @available(iOS 14.0, *)
@@ -290,9 +289,7 @@ open class InteractivePresentationController: PresentationController, UIGestureR
             func dismissIfNeeded() -> Bool {
                 let shouldDismiss = delegate?.presentationControllerShouldDismiss?(self) ?? true
                 if shouldDismiss {
-                    #if targetEnvironment(macCatalyst)
-                    let canStart = true
-                    #else
+                    #if !targetEnvironment(macCatalyst)
                     let canStart: Bool
                     if keyboardHeight > 0 {
                         var views = gestureRecognizer.view.map { [$0] } ?? []
@@ -320,8 +317,8 @@ open class InteractivePresentationController: PresentationController, UIGestureR
                     } else {
                         canStart = true
                     }
-                    #endif
                     guard canStart else { return false }
+                    #endif
                     presentedViewController.dismiss(animated: true)
                     return true
                 }
