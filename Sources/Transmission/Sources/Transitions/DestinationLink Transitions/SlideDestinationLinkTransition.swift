@@ -138,14 +138,14 @@ open class SlideNavigationControllerTransition: ViewControllerTransition {
         )
 
         animator.addAnimations { [initialOpacity] in
-            toVC.view.transform = .identity
+            toVC.view.transform = .scale
             toVC.view.alpha = 1
             fromVC.view.transform = fromVCTransform
             fromVC.view.alpha = initialOpacity
         }
         animator.addCompletion { animatingPosition in
-            toVC.view.transform = .identity
-            fromVC.view.transform = .identity
+            toVC.view.transform = .scale
+            fromVC.view.transform = .scale
             switch animatingPosition {
             case .end:
                 transitionContext.completeTransition(true)
