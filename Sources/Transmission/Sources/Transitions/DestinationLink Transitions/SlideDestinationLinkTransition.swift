@@ -138,7 +138,7 @@ open class SlideNavigationControllerTransition: ViewControllerTransition {
         )
 
         animator.addAnimations { [initialOpacity] in
-            toVC.view.transform = .scaledBy(0, 0)
+            toVC.view.transform = .scaledBy(x: 0, y: 0)
             toVC.view.alpha = 1
             fromVC.view.transform = fromVCTransform
             fromVC.view.alpha = initialOpacity
